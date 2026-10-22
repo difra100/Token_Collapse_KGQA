@@ -1,0 +1,70 @@
+diff --git a/src/model/graph_llm.py b/src/model/graph_llm.py
+index 017de79..1871905 100644
+--- a/src/model/graph_llm.py
++++ b/src/model/graph_llm.py
+@@ -31,7 +31,7 @@ class GraphLLM(torch.nn.Module):
+ 
+         print('Loading LLAMA')
+         kwargs = {
+-            "max_memory": {0: '80GiB', 1: '80GiB'},
++            "max_memory": {i: f'{size}GiB' for i, size in enumerate(args.max_memory)},
+             "device_map": "auto",
+             "revision": "main",
+         }
+@@ -125,8 +125,8 @@ class GraphLLM(torch.nn.Module):
+         # encode special tokens
+         eos_tokens = self.tokenizer(EOS, add_special_tokens=False)
+         eos_user_tokens = self.tokenizer(EOS_USER, add_special_tokens=False)
+-        bos_embeds = self.word_embedding(self.tokenizer(BOS, add_special_tokens=False, return_tensors='pt').input_ids[0])
+-        pad_embeds = self.word_embedding(torch.tensor(self.tokenizer.pad_token_id)).unsqueeze(0)
++        bos_embeds = self.word_embedding(self.tokenizer(BOS, add_special_tokens=False, return_tensors='pt').input_ids[0].to(self.model.device))
++        pad_embeds = self.word_embedding(torch.tensor(self.tokenizer.pad_token_id).to(self.model.device)).unsqueeze(0)
+ 
+         # encode graphs
+         graph_embeds = self.encode_graphs(samples)
+@@ -178,8 +178,8 @@ class GraphLLM(torch.nn.Module):
+ 
+         # encode special tokens
+         eos_user_tokens = self.tokenizer(EOS_USER, add_special_tokens=False)
+-        bos_embeds = self.word_embedding(self.tokenizer(BOS, add_special_tokens=False, return_tensors='pt').input_ids[0])
+-        pad_embeds = self.word_embedding(torch.tensor(self.tokenizer.pad_token_id)).unsqueeze(0)
++        bos_embeds = self.word_embedding(self.tokenizer(BOS, add_special_tokens=False, return_tensors='pt').input_ids[0].to(self.model.device))
++        pad_embeds = self.word_embedding(torch.tensor(self.tokenizer.pad_token_id).to(self.model.device)).unsqueeze(0)
+ 
+         # encode graphs
+         graph_embeds = self.encode_graphs(samples)
+diff --git a/src/model/pt_llm.py b/src/model/pt_llm.py
+index d6bf404..620071c 100644
+--- a/src/model/pt_llm.py
++++ b/src/model/pt_llm.py
+@@ -31,7 +31,7 @@ class PromptTuningLLM(torch.nn.Module):
+ 
+         print('Loading LLAMA')
+         kwargs = {
+-            "max_memory": {0: '80GiB', 1: '80GiB'},
++            "max_memory": {i: f'{size}GiB' for i, size in enumerate(args.max_memory)},
+             "device_map": "auto",
+             "revision": "main",
+         }
+@@ -110,8 +110,8 @@ class PromptTuningLLM(torch.nn.Module):
+         # encode special tokens
+         eos_tokens = self.tokenizer(EOS, add_special_tokens=False)
+         eos_user_tokens = self.tokenizer(EOS_USER, add_special_tokens=False)
+-        bos_embeds = self.word_embedding(self.tokenizer(BOS, add_special_tokens=False, return_tensors='pt').input_ids[0])
+-        pad_embeds = self.word_embedding(torch.tensor(self.tokenizer.pad_token_id)).unsqueeze(0)
++        bos_embeds = self.word_embedding(self.tokenizer(BOS, add_special_tokens=False, return_tensors='pt').input_ids[0].to(self.model.device))
++        pad_embeds = self.word_embedding(torch.tensor(self.tokenizer.pad_token_id).to(self.model.device)).unsqueeze(0)
+ 
+         batch_size = len(samples['id'])
+         batch_inputs_embeds = []
+@@ -160,8 +160,8 @@ class PromptTuningLLM(torch.nn.Module):
+ 
+         # encode special tokens
+         eos_user_tokens = self.tokenizer(EOS_USER, add_special_tokens=False)
+-        bos_embeds = self.word_embedding(self.tokenizer(BOS, add_special_tokens=False, return_tensors='pt').input_ids[0])
+-        pad_embeds = self.word_embedding(torch.tensor(self.tokenizer.pad_token_id)).unsqueeze(0)
++        bos_embeds = self.word_embedding(self.tokenizer(BOS, add_special_tokens=False, return_tensors='pt').input_ids[0].to(self.model.device))
++        pad_embeds = self.word_embedding(torch.tensor(self.tokenizer.pad_token_id).to(self.model.device)).unsqueeze(0)
+ 
+         batch_size = len(samples['id'])
+         batch_inputs_embeds = []

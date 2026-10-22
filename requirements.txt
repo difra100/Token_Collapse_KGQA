@@ -1,0 +1,18 @@
+# Install a CUDA-compatible PyTorch build first; see README.md.
+transformers>=4.38
+peft>=0.10
+accelerate>=0.27
+datasets>=2.16
+sentencepiece
+protobuf
+pandas
+scipy==1.12
+wandb
+torch_geometric
+torch_scatter
+torch_sparse
+torch_cluster
+torch_spline_conv
+pcst_fast
+gensim
+ogb

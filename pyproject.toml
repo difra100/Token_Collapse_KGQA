@@ -1,0 +1,46 @@
+[project]
+name = "token-collapse"
+version = "0.1.0"
+description = "Training and geometry diagnostics for textual graph soft prompting"
+readme = "README.md"
+# Runtime union annotations require Python 3.10; PyTorch 2.0.1 has no 3.12 wheels.
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "torch==2.0.1",
+    # Keep the Hugging Face stack compatible with the original PyTorch release.
+    "transformers>=4.38,<4.50",
+    "peft>=0.10,<0.14",
+    "accelerate>=0.27,<1",
+    "datasets>=2.16",
+    "sentencepiece",
+    "protobuf",
+    "numpy<2",
+    "pandas",
+    "scipy==1.12",
+    "wandb",
+    "torch-geometric<2.7",
+    # Select CUDA wheels explicitly so uv never falls back to a source build.
+    "pyg-lib==0.4.0+pt20cu118",
+    "torch-scatter==2.1.2+pt20cu118",
+    "torch-sparse==0.6.18+pt20cu118",
+    "torch-cluster==1.6.3+pt20cu118",
+    "torch-spline-conv==1.2.2+pt20cu118",
+    "pcst-fast",
+    "gensim",
+    "ogb",
+    "scikit-learn",
+    "tqdm",
+]
+
+[tool.uv]
+# Launchers import the included upstream source directly from the checkout.
+package = false
+find-links = ["https://data.pyg.org/whl/torch-2.0.1+cu118.html"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu118" }
+
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true

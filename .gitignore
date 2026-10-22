@@ -1,0 +1,76 @@
+# Python and editor state
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+.idea/
+.vscode/
+.venv/
+venv/
+
+# Local experiment tracking and generated outputs
+wandb/
+logs/
+outputs/*
+!outputs/.gitkeep
+stage0/*
+!stage0/.gitkeep
+results*/
+audit_runs/
+
+# Data, retrieval caches, checkpoints, and third-party experiment clones
+data/*
+!data/README.md
+checkpoints/*
+!checkpoints/README.md
+# Keep only the upstream raw inputs; generated graphs/caches stay local.
+G-Retriever-upstream/dataset/*
+!G-Retriever-upstream/dataset/expla_graphs/
+!G-Retriever-upstream/dataset/scene_graphs/
+!G-Retriever-upstream/dataset/gqa/
+G-Retriever-upstream/dataset/expla_graphs/*
+!G-Retriever-upstream/dataset/expla_graphs/train_dev.tsv
+G-Retriever-upstream/dataset/scene_graphs/*
+!G-Retriever-upstream/dataset/scene_graphs/questions.csv
+G-Retriever-upstream/dataset/gqa/*
+!G-Retriever-upstream/dataset/gqa/sceneGraphs.zip
+external/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.onnx
+*.jsonl
+
+# Legacy local workflows and private drafting material. Public equivalents are
+# run_train.py, run_stage1.py, run_probe.py, README.md, and docs/.
+queues/
+run_queue.sh
+run_scene_graphs.sh
+sync_from_running.sh
+jackknife_tokens.py
+stage0_align.py
+train_control.py
+token_probe.py
+system_prompt.md
+graph_prompt_audit/queues/
+graph_prompt_audit/runners/
+graph_prompt_audit/configs/
+paper_tools/*.md
+paper_tools/backups/
+paper_tools/stats.py
+*.docx
+
+# LaTeX build products
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+paper_tools/

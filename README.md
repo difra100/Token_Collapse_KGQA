@@ -10,7 +10,7 @@ It also provides extension points for researchers developing new graph
 encoders, projectors, and training objectives to address graph–LLM alignment
 problems, using the same diagnostics to evaluate their methods.
 
-**Paper (preprint):** arXiv link coming soon.
+[**Paper (preprint)**](https://arxiv.org/abs/2610.31572)
 
 The paper is a preprint. Everyone is welcome to
 [report an issue](https://github.com/difra100/Token_Collapse_KGQA/issues),

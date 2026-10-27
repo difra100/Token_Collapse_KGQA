@@ -12,8 +12,9 @@ problems, using the same diagnostics to evaluate their methods.
 
 [**Paper (preprint)**](https://arxiv.org/abs/2610.31572)
 
-**Video:** a short animated explainer of the paper (about 2 min 45 s, 1080p):
-[docs/token_collapse_explainer.mp4](docs/token_collapse_explainer.mp4).
+**Video:**
+https://github.com/user-attachments/assets/992f4749-ac27-4744-9658-371b6fce4668
+
 It is made with [Manim](https://www.manim.community/); the source is in [animation/](animation/).
 
 The paper is a preprint. Everyone is welcome to
